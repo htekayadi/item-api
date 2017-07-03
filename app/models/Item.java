@@ -1,27 +1,28 @@
 package models;
 
 
+import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 
 @Entity
-public class Item extends BaseModel {
+public class Item extends Model {
 
     private static final long serialVersionUID = 1L;
 
-//    public String itemId;
+    @Id
+    public String itemId;
 
     @Constraints.Required
     public String name;
 
     public String price;
 
-//    @ManyToOne
     public String category;
 
-    public static Finder<Long, Item> find
-            = new Finder<Long, Item>(Long.class, Item.class);
+    public static Finder<String, Item> find
+            = new Finder<>(Item.class);
 }
 

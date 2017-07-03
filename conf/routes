@@ -5,8 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-GET     /items                      controllers.ItemController.all
-GET     /items/:id                  controllers.ItemController.get(id: Long)
+GET     /items                      controllers.ItemController.all()
+GET     /items/:id                  controllers.ItemController.get(id: String)
 POST    /items                      controllers.ItemController.create()
 GET     /searchitems                controllers.ItemController.find(category: String)
 

@@ -9,19 +9,20 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import java.util.List;
+import java.util.UUID;
 
 import static play.libs.Json.toJson;
 
 public class ItemController extends Controller {
 
-    public Result all(String category){
+    public Result all(){
 
         List<Item> items = new Model.Finder(String.class, Item.class).all();
 
         return ok(toJson(items));
     }
 
-    public Result get(Long id){
+    public Result get(String id){
 
         Item item = Item.find.byId(id);
 
@@ -43,7 +44,7 @@ public class ItemController extends Controller {
             if (item.toString().equals("")){
                 return badRequest("Missing parameter");
             }
-
+            item.itemId = UUID.randomUUID().toString();
             item.save();
         }
 
@@ -60,6 +61,5 @@ public class ItemController extends Controller {
         }
 
         return ok(toJson(items));
-
     }
 }
