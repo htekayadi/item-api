@@ -2,6 +2,8 @@ package controllers;
 
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Item;
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -37,6 +39,7 @@ public class ItemController extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public Result create(){
         JsonNode json = request().body().asJson();
+        ArrayNode arrayResponse = Json.newArray();
 
         for (JsonNode itemNode : json.withArray("items")) {
             Item item = Json.fromJson(itemNode, Item.class);
@@ -46,9 +49,16 @@ public class ItemController extends Controller {
             }
             item.itemId = UUID.randomUUID().toString();
             item.save();
+
+            ObjectNode jsonResponse = Json.newObject();
+            jsonResponse.put("itemId", item.itemId);
+            jsonResponse.put("name", item.name);
+            arrayResponse.add(jsonResponse);
         }
 
-        return ok(Json.newObject());
+        ObjectNode response = Json.newObject();
+        response.put("success", arrayResponse);
+        return ok(response);
     }
 
     public Result find(String category){

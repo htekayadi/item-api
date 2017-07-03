@@ -1,17 +1,15 @@
 # Prerequisites
-
-Java 1.8
-Play Framework 2.5.x
-Ebean
-MySQL
-
-## Database Setup
-$create database tapiver_dev;
+* Java 1.8
+* Play 2.5
+* Ebean
+* MySQL
 
 ## Database Setup
 $create database tapiver_dev;
 
-bc. POST localhost:9000/items
+## API Routes
+POST localhost:9000/items
+```
 {
   "items" : [
     {
@@ -31,9 +29,10 @@ bc. POST localhost:9000/items
     }
   ]
 }
+```
 
-bc. GET localhost:9000/items
+GET localhost:9000/items
 
-bc. GET localhost:9000/items/{itemId}
+GET localhost:9000/items/{itemId}
 
-bc. GET localhost:9000/searchitems?category=phone
+GET localhost:9000/searchitems?category=phone
