@@ -1,6 +1,6 @@
 package models;
 
-import io.ebean.Model;
+import com.avaje.ebean.Model;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
