@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
   jdbc,
   javaJpa,
   "mysql" % "mysql-connector-java" % "5.1.21",
-  "com.h2database" % "h2" % "1.4.194"
+  "com.h2database" % "h2" % "1.4.194",
+  "com.google.code.gson" % "gson" % "2.3.1"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
