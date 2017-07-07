@@ -15,12 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class ItemService {
-    public static ObjectNode create(Http.RequestBody requestBody) {
-        String bodyRequest = requestBody.asJson().withArray("items").toString();
-        Type listType = new TypeToken<List<Item>>(){}.getType();
-
-        List<Item> items = new Gson().fromJson(bodyRequest, listType);
-
+    public static ObjectNode create(List<Item> items) {
         ArrayNode arrayResponse = Json.newArray();
         for (Item item : items) {
             ObjectNode jsonResponse = Json.newObject();
